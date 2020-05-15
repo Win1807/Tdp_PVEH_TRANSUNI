@@ -1,0 +1,101 @@
+<c:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:c="sap.ui.core"    
+    xmlns:l="sap.ui.layout">
+	<Dialog 
+        title = "Selección Versión"
+        afterClose= "cancelarModelo"
+        enableScrolling="true">
+        <l:VerticalLayout>
+
+            <f:SimpleForm id="SimpleFormDisplay354"
+                editable="false"
+                layout="ResponsiveGridLayout"
+                title="Filtros"
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="12"
+                adjustLabelSpan="true"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="0"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="false">
+                <f:content>
+                    <Label text="Des. Versión" textFor="descripcion"/>
+                    <Input id="descripcion" submit="BuscarModelo"/>
+                    
+                    <!-- <Label text="Tipos de materiales" labelFor="codigo"/>
+                    <MultiInput id="codigo" enableMultiLineMode="true"/> -->
+                    
+                    <Label text="Cod. Versión" textFor="material"/>
+                    <Input id="material" submit="BuscarModelo" type="Number"/>
+                    
+                    <Label text="Resultados" textFor="cantidad"/>
+                    <Select id="cantidad">
+                        <c:Item key="20" text="20"/>
+                        <c:Item key="50" text="50"/>
+                        <c:Item key="100" text="100"/>
+
+                    </Select>
+                    <Label text="Buscar" textFor="buscar"/>
+                    <Button 
+                        name="buscar"
+                        text="Buscar"
+                        press="BuscarModelo"
+                        type="Accept"
+                        icon="sap-icon://search"/>
+                </f:content>
+            </f:SimpleForm>
+
+            <Table 
+                id="tbBusqueda"
+                mode="MultiSelect"
+                busyIndicatorDelay="{oModel2>/tableBusyDelay}"
+                growing="true"
+                growingScrollToLoad="true"
+                growingThreshold="2000"
+                selectionChange="onSelectionChange"
+                updateFinished="onUpdateFinished"
+                items="{path:'/'}"
+                class="sapUiResponsiveContent">
+                <items>
+                    <ColumnListItem type="Active">
+                        <cells>
+                            <Text text="{maktg}"></Text>
+                            <Text text="{matnr}"></Text>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+                <columns>
+                    <Column>
+                        <Label text="Denominación" />
+                    </Column>
+                    <Column>
+                        <Label text="Material" />
+                    </Column>
+                </columns>
+            </Table>
+        </l:VerticalLayout>
+        <beginButton>
+            <Button 
+                text="Seleccionar"
+                press="seleccionarModelo"
+                type="Accept"
+                icon="sap-icon://accept"/>
+        </beginButton>
+        <endButton>
+            <Button 
+                text="Cancelar"
+                press="cancelarModelo"
+                type="Reject"
+                icon="sap-icon://decline"/>
+        </endButton>
+	</Dialog>
+</c:FragmentDefinition>

@@ -1,0 +1,87 @@
+<c:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:c="sap.ui.core"    
+    xmlns:l="sap.ui.layout">
+	<Dialog 
+        title = "Transferencia de unidades"
+        afterClose= "onCancelar"
+        enableScrolling="true"
+		contentWidth="30rem"
+        id="idDialog">
+        <l:VerticalLayout class="sapUiContentPadding" width="100%">
+			<Toolbar>
+				<content>
+            		<Title text="Series a trans." level="H2" id="idTitle"/>
+				</content>
+			</Toolbar>
+			<Table 
+		        id="TBVehiculos"
+		        busyIndicatorDelay="{oModel2>/tableBusyDelay}"
+		        updateFinished="onUpdateFinished"
+		        items="{path:'/'}"
+		        class="sapUiResponsiveContent">
+				<headerToolbar>
+					<Toolbar>
+						<content>
+	                		<Label text="Series a trans." textFor="idOrig"/>
+						</content>
+					</Toolbar>
+				</headerToolbar>
+		        <items>
+		            <ColumnListItem type="Active">
+		                <cells>
+		                    <Text text="{serie}"></Text>
+		                </cells>
+		            </ColumnListItem>
+		        </items>
+		        <columns>
+		            <Column>
+		                <Label text="N° int.vehículo" />
+		            </Column>
+		        </columns>
+		    </Table>
+	        <f:SimpleForm id="SimpleFormDisplay354"
+	            editable="false"
+	            layout="ResponsiveGridLayout"
+	            labelSpanXL="3"
+	            labelSpanL="3"
+	            labelSpanM="3"
+	            labelSpanS="12"
+	            adjustLabelSpan="true"
+	            emptySpanXL="4"
+	            emptySpanL="4"
+	            emptySpanM="4"
+	            emptySpanS="0"
+	            columnsXL="1"
+	            columnsL="1"
+	            columnsM="1"
+	            singleContainerFullSize="false">
+	            <f:content>
+	                <Label text="Solicitante orig" textFor="idOrig"/>
+	                <Input id="idOrig" enabled="false"/>
+	                <Label text="Solicitante dest" textFor="idDest" required="true"/>
+	                <!--<Input id="idDest"/>-->
+	                <MultiInput value="{Street}" valueHelpRequest="onFiltroSolicitante" id="Solicitant" submit="onValidSolicitante"  required="true"/>
+	                <Text id="SolText" text="" />
+	                <Label id="idSerie" visible="false"/>
+	            </f:content>
+	        </f:SimpleForm>
+        </l:VerticalLayout>
+        <beginButton>
+            <Button 
+                text="Transferir"
+                press="onTransferir"
+                type="Accept"
+                icon="sap-icon://navigation-right-arrow"/>
+        </beginButton>
+        <endButton>
+            <Button 
+                text="Cancelar"
+                press="onCancelar"
+                type="Reject"
+                icon="sap-icon://decline"/>
+        </endButton>
+	</Dialog>
+</c:FragmentDefinition>

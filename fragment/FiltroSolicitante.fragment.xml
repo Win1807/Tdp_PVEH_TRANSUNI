@@ -1,0 +1,123 @@
+<core:FragmentDefinition
+xmlns="sap.m"
+xmlns:t="sap.ui.table"
+xmlns:l="sap.ui.layout"
+xmlns:core="sap.ui.core"
+xmlns:mvc="sap.ui.core.mvc"
+xmlns:f="sap.ui.layout.form"
+controllerName="sap.ui.veh_transuni.controller.Home">
+    <Dialog title="Búsqueda de Solicitante" afterClose="onCloseFiltro">
+    	<f:Form id="FORMULARIO" editable="true">
+            <f:layout>
+                <f:ResponsiveGridLayout
+                        labelSpanXL="5"
+                        labelSpanL="5"
+                        labelSpanM="5"
+                        labelSpanS="12"
+                        adjustLabelSpan="false"
+                        emptySpanXL="0"
+                        emptySpanL="0"
+                        emptySpanM="0"
+                        emptySpanS="0"
+                        columnsXL="2"
+                        columnsL="2"
+                        columnsM="2"
+                        singleContainerFullSize="false" />
+            </f:layout>
+                <f:formContainers>
+                    <f:FormContainer title="">
+                        <f:formElements>
+                            <f:FormElement label="Conc. búsqueda">
+                                <f:fields>
+                                    <Input type="text" id="txtConcbusqueda"/>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Código postal">
+                                <f:fields>
+									<Input type="text" id="txtCodigo"/>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Cliente">
+                                <f:fields>
+                                    <Input type="text" id="txtCliente"/>
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+
+                    <f:FormContainer title="">
+                        <f:formElements>
+                          <f:FormElement label="Población">
+                                <f:fields>
+                                    <Input type="text" id="txtPoblacion"/>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Nombre">
+                                <f:fields>
+                                    <Input type="text" id="txtNombre"/>
+                                </f:fields>
+                            </f:FormElement>
+                            
+                        </f:formElements>
+                    </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+        <FlexBox
+			alignItems="Start"
+			justifyContent="End">
+			<items>
+				<Label text="Cantidad de entradas" class="sapUiSmallMarginEnd sapUiSmallMarginTop" />
+				<Input id="CantSol" value="500" type="Number" width="80px">
+				
+				</Input>
+				<Button text="Buscar" class="sapUiSmallMarginEnd" press="onSearchSolicitante"></Button>
+        	</items>
+        </FlexBox>
+        
+		<Table 
+            id="tbFilterSolicitante"
+            mode="Single"
+            growing = "true"
+            growingScrollToLoad="false"
+            growingThreshold="7"
+            selectionChange="onSelectionChange"
+            updateFinished="onUpdateFinished"
+            items="{path:'/'}"
+            class="sapUiResponsiveContent">
+            <columns>
+                <Column width = "8em"  demandPopin="true">
+                    <Label text="Conc.búsq." />
+                </Column>
+                <Column width = "6em" minScreenWidth="Tablet" demandPopin="true">
+                    <Label text="Código postal" />
+                </Column>
+                <Column width = "5em" minScreenWidth="Tablet" demandPopin="true">
+                    <Label text="Población" />
+                </Column>
+                <Column width = "14em" minScreenWidth="Tablet" demandPopin="true">
+                    <Label text="Nombre" />
+                </Column>
+                <Column width = "6em"  demandPopin="true">
+                    <Label text="Cliente" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem press="onSelectItemTbl" type="Active">
+                    <cells>
+                        <Text text="{sortl}"></Text>
+                        <Text text="{pstlz}"></Text>
+                        <Text text="{ort01}"></Text>
+                        <Text text="{name1}"></Text>
+                        <Text text="{kunnr}"></Text>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        <endButton>
+            <Button text="Cancelar" 
+                    press="onCloseFiltro" 
+                    icon="sap-icon://decline"
+                    type="Reject"/>
+        </endButton>
+    </Dialog>    
+</core:FragmentDefinition>
